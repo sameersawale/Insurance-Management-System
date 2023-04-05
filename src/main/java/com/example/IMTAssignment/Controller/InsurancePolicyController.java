@@ -21,7 +21,7 @@ public class InsurancePolicyController {
     InsuranceService insuranceService;
 
     @PostMapping("/add")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_USER')or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity addInsurancePolicy(@RequestBody InsurancePolicyDto insurancePolicyDto){
         try{
             String result= insuranceService.addInsurancePolicy(insurancePolicyDto);
@@ -60,7 +60,7 @@ public class InsurancePolicyController {
     }
 
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAuthority('ROLE_USER') or ('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity deletePolicy(@PathVariable("id")Integer id){
         try {
             String result= insuranceService.deletePolicy(id);
@@ -73,7 +73,7 @@ public class InsurancePolicyController {
     }
 
     @PutMapping("/edit/{id}")
-    @PreAuthorize("hasAuthority('ROLE_USER') or ('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity updatePolicy(@PathVariable("id")Integer id, @RequestBody InsurancePolicyUpdateReqDto insurancePolicyUpdateReqDto){
         try {
             String result=insuranceService.updatePolicy(id, insurancePolicyUpdateReqDto);

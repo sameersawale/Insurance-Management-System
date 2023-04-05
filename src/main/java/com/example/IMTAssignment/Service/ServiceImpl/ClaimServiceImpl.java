@@ -105,6 +105,8 @@ public class ClaimServiceImpl implements ClaimService {
     public String deleteClaim(Integer id) throws Exception {
         Claim claim=claimRepository.findById(id).get();
         claimRepository.delete(claim);
+        InsurancePolicy insurancePolicy=claim.getInsurancePolicy();
+        insurancePolicy.setClaim(claim);
         return "claim delete successfully...";
     }
 

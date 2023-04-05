@@ -20,7 +20,7 @@ public class ClaimController {
     ClaimService claimService;
 
     @PostMapping("/add")
-    @PreAuthorize("hasAuthority('ROLE_USER') or ('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity addClaim(@RequestBody ClaimDto claimDto){
         try {
             String result = claimService.addClaim(claimDto);
@@ -33,7 +33,7 @@ public class ClaimController {
     }
 
     @GetMapping("/get/{id}")
-    @PreAuthorize("hasAuthority('ROLE_USER') or ('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity getClaimById(@PathVariable("id") Integer id){
         try {
                 ClaimResponseDto claimResponseDto=claimService.getClaimById(id);
@@ -61,7 +61,7 @@ public class ClaimController {
     }
 
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasAuthority('ROLE_USER') or ('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity deleteClaim(@PathVariable("id")Integer id){
         try {
             String result= claimService.deleteClaim(id);
@@ -74,7 +74,7 @@ public class ClaimController {
     }
 
     @PutMapping("/edit/{id}")
-    @PreAuthorize("hasAuthority('ROLE_USER') or ('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity updateClaim(@PathVariable("id")Integer id, ClaimUpdateReqDto claimUpdateReqDto){
         try {
             String result= claimService.updateClaim(id, claimUpdateReqDto);

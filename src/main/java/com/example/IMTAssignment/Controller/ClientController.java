@@ -20,7 +20,7 @@ public class ClientController {
     ClientService clientService;
 
     @PostMapping("/add")
-    @PreAuthorize("hasAuthority('ROLE_USER') or ('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity addClient(@RequestBody ClientDto clientDto){
         try{
             String result= clientService.addClient(clientDto);
@@ -33,7 +33,7 @@ public class ClientController {
     }
 
     @GetMapping("/get/{id}")
-    @PreAuthorize("hasAuthority('ROLE_USER') or ('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity getClient(@PathVariable("id") Integer id){
         try{
             ClientResponseDto clientResponseDto=clientService.getClient(id);
@@ -60,7 +60,7 @@ public class ClientController {
     }
 
     @DeleteMapping("delete/{id}")
-    @PreAuthorize("hasAuthority('ROLE_USER') or ('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity deleteClient(@PathVariable("id")Integer id){
         try {
             String result= clientService.deleteClient(id);
@@ -74,7 +74,7 @@ public class ClientController {
     }
 
     @PutMapping("/edit/{id}")
-    @PreAuthorize("hasAuthority('ROLE_USER') or ('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity updateClient(@PathVariable("id")Integer id, @RequestBody ClientUpdateReqDto clientUpdateReqDto){
         try{
             String result= clientService.updateClient(id, clientUpdateReqDto);
